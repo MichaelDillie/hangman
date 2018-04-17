@@ -1,0 +1,14 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+.guesses-wrapper {
+    height: 150px;
+}
+.word-wrapper {
+    height: 200px;
+    border-top: grey 1px solid;
+    border-bottom: grey 1px solid;
+}
+.letters-wrapper {
+    height: 150px;
+}

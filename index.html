@@ -1,15 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700" rel="stylesheet">
     <!-- materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- javascript -->
+    <script src="assets/javascript/game.js"></script>
 </head>
+
 <body>
-    
+    <!-- navbar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Hangman</a>
+        </div>
+    </nav>
+
+    <section class="container">
+        <div class="row">
+            <div class="col m6">
+                IMG HERE
+            </div>
+            <div class="col m6">
+
+                <div class="row guesses-wrapper">
+                    <!-- # of guesses left -->
+                    <div>Number of guesses left</div>
+                    <div id="guesses-left">15</div>
+                </div>
+                <div class="row word-wrapper">
+                    <!-- Word to be guessed -->
+                    <div></div>
+                    <div id="word-to-guess"></div>
+                </div>
+                <div class="row letters-wrapper">
+                    <!-- Letters already guessed -->
+                    <div>Letters you have already guessed</div>
+                    <div id="letters-guessed"></div>
+                </div>
+
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col m4"></div>
+            <div class="col m2" id="play-btn"><a class="waves-effect waves-light btn-large">Play</a></div>
+            <div class="col m2" id="reset-btn"><a class="waves-effect waves-light btn-large">Reset</a></div>
+            <div class="col m4"></div>
+        </div>
+    </section>
+
 </body>
+
 </html>
