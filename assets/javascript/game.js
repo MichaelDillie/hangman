@@ -5,6 +5,14 @@ var lost = "lost";
 
 var wordList = ["javascript", "array", "document", "element", "argument", "function", "variable", "program", "developer", "internet", "coffee", "sleep"];
 
+// Word picked
+// document.getElementById("play-btn").addEventListener("click", playGame);
+function playGame() {
+    word = wordList[Math.floor(Math.random() * wordList.length)];
+    console.log(word);
+}
+playGame();
+
 document.onkeyup = function (event) {
     console.log(event.key);
 
@@ -12,12 +20,9 @@ document.onkeyup = function (event) {
     guessesLeft--;
     document.getElementById("guesses-left").innerHTML = guessesLeft;
     console.log(guessesLeft);
-    if(guessesLeft === 0) {
-        console.log(lost)
-        return lost
+    if (guessesLeft === 0) {
+        alert("You Lost :(")
     }
-
-    // Word picked
 
     // Letters guessed
     guessedLetters.push(event.key);
