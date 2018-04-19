@@ -12,18 +12,22 @@ var availableLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 
 var wordList = ["javascript", "array", "document", "element", "argument", "function", "variable", "program", "developer", "internet", "coffee", "sleep"];
 
+
 //This function will pick a word "randomly" from wordList
 function pickWord() {
     //Randomly picks one word from wordList
     word = wordList[Math.floor(Math.random() * wordList.length)]
-    console.log(word);
     //Splitting word by each character and placing it into the empty wordToGuess array
     wordToGuess = word.split("");
+    console.log(word);
+    console.log(word[2]);
     console.log(wordToGuess.length);
     //Creating the blank spaces for the guessable word
     for(var i = 0; i < wordToGuess.length; i++) {
         displayWord.push("_");
     }
+    var wordDisplay = displayWord.join(" ");
+    document.getElementById("word-to-guess").innerHTML = wordDisplay;
 }
 
 
@@ -60,7 +64,7 @@ function lettersGuessed() {
         if(guessed != true) {
             guessedLetters.push(this.event.key);
         } else {
-            console.log("You already guessed " + this.event.key);
+            document.getElementById("letter-error").innerHTML = "You already guessed " + this.event.key;
         }
     }
     //If users input was not a letter then let them know
@@ -71,9 +75,27 @@ function lettersGuessed() {
     document.getElementById("letters-guessed").innerHTML = guessedLetters;
 }
 
+function letterInWord() {
+    console.log(displayWord);
+    for(var i = 0; i < wordToGuess.length; i++) {
+        if (this.event.key === wordToGuess[i]) {
+            console.log("Found the letter you guessed in wordToGuess " + wordToGuess[i] + " at index " + i);
+            displayWord.splice(i, 1, wordToGuess[i]);
+        }
+    }
+    document.getElementById("word-to-guess").innerHTML = displayWord.join(" ");
+    console.log(displayWord);
+}
 
 document.onkeyup = function(event) {
-    lettersGuessed();
+    if(!gameStarted && event.keyCode === 13) {
+        pickWord();
+        gameStarted = true;
+    }
+    if(gameStarted) {
+        lettersGuessed();
+        letterInWord();
+    }
 }
 
 
