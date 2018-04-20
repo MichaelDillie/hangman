@@ -4,6 +4,7 @@ var userGuess = "";
 var wordToGuess = [];
 var displayWord = [];
 var guessedLetters = [];
+var goodLettersGuessed = 0;
 var gameStarted = false;
 var guessed = false;
 var availableLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
@@ -20,8 +21,6 @@ function pickWord() {
     //Splitting word by each character and placing it into the empty wordToGuess array
     wordToGuess = word.split("");
     console.log(word);
-    console.log(word[2]);
-    console.log(wordToGuess.length);
     //Creating the blank spaces for the guessable word
     for(var i = 0; i < wordToGuess.length; i++) {
         displayWord.push("_");
@@ -29,14 +28,14 @@ function pickWord() {
     var wordDisplay = displayWord.join(" ");
     document.getElementById("word-to-guess").innerHTML = wordDisplay;
 }
-
+//******************************************************************************************************** */
 
 //Checking if letter that was guessed is available
 function checkGuessedLetters() {
     //This is checking that if users guess is in alailableLetters
     if(availableLetters.indexOf(this.event.key) > -1) {
-        //Looping through guessed letters for the length of availableLetters
-        for(var i = 0; i < availableLetters.length; i++) {
+        //Looping through guessed letters for the length of word
+        for(var i = 0; i < word.length; i++) {
             //If the users guess has already been guessed then we will set guessed to true
             if(this.event.key === guessedLetters[i]) {
                 guessed = true;
@@ -76,21 +75,20 @@ function lettersGuessed() {
 }
 
 function letterInWord() {
-    console.log(displayWord);
     for(var i = 0; i < wordToGuess.length; i++) {
         if (this.event.key === wordToGuess[i]) {
-            console.log("Found the letter you guessed in wordToGuess " + wordToGuess[i] + " at index " + i);
             displayWord.splice(i, 1, wordToGuess[i]);
+            goodLettersGuessed++;
         }
     }
     document.getElementById("word-to-guess").innerHTML = displayWord.join(" ");
-    console.log(displayWord);
 }
 
 document.onkeyup = function(event) {
     if(!gameStarted && event.keyCode === 13) {
         pickWord();
         gameStarted = true;
+        document.getElementById("start-game").innerHTML = "";
     }
     if(gameStarted) {
         lettersGuessed();
